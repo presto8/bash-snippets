@@ -1,0 +1,7 @@
+help() {
+# This is a self-contained help file, intended to be placed at the top of the
+# bash script file. When the user opens the file, they can read the help right
+# away. During runtime, calling the help function will cause the contents to be
+# displayed. This approach maintaisn the DRY principle.
+    awk '/help\(\)/{flag=1; next} /awk.*help/{flag=0} flag' "$0"
+}
