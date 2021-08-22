@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+lockfile="/tmp/sync-to-amazon-drive.lock"
+run_lock() {
+    (
+        if ! flock -n 200; then
+            echo already running
+            return 1
+        fi
+
+        "$@"
+    ) 200>$lockfile
+}
